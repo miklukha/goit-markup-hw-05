@@ -605,9 +605,11 @@ color: var(--second-text-color);
   letter-spacing: 0.03em;
   color: var(--third-text-color);
   background-color: var(--filter-button-background-color);
+  box-shadow: none;
   border: transparent;
   border-radius: 4px;
   padding: 6px 22px;
+  transition: color var(--transition-duration) var(--transition-timing-function), background-color var(--transition-duration) var(--transition-timing-function), box-shadow var(--transition-duration) var(--transition-timing-function);
 }
 
 .filter-btn:hover,
@@ -635,12 +637,50 @@ color: var(--second-text-color);
 .works-link {
   color: inherit;
   display: block;
+  box-shadow: none;
+  transition: box-shadow var(--transition-duration) var(--transition-timing-function);
 }
 
 .works-link:hover,
 .works-link:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
+  
+}
+.works-link:hover .works-overlay,
+.works-link:focus .works-overlay{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.works-thumb{
+  position: relative;
+  overflow: hidden;
+}
+
+.works-overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(33, 150, 243, 0.9);
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform var(--transition-duration) var(--transition-timing-function), opacity var(--transition-duration) var(--transition-timing-function);
+
+}
+
+.overlay-text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 322px;
+  font-size: 18px;
+  line-height: calc(28/18);
+  letter-spacing: 0.03em;
+  color: var(--second-text-color);
 }
 
 .works-item-description {
