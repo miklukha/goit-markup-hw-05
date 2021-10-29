@@ -17,6 +17,9 @@
   --first-icon-color: #afb1b8;
   --second-icon-color: #ffffff;
   --icon-background-color: rgba(255, 255, 255, 0.1);
+  --backdrop-color: rgba(0, 0, 0, 0.2);
+  --transition-duration: 250ms;
+  --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -159,7 +162,7 @@ body {
   letter-spacing: 0.02em;
   padding-top: 32px;
   padding-bottom: 32px;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--transition-duration) var(--transition-timing-function);
 }
 
 .nav-link {
@@ -255,7 +258,7 @@ body {
   margin-bottom: 30px;
 }
 
-.hero-btn {
+.modal-btn-open {
   font-weight: 700;
   font-size: 16px;
   line-height: 1.87;
@@ -268,11 +271,66 @@ body {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   padding: 10px 32px;
   min-width: 200px;
+  transition: background-color var(--transition-duration) var(--transition-timing-function);
 }
 
-.hero-btn:hover,
-.hero-btn:focus {
+.modal-btn-open:hover,
+.modal-btn-open:focus {
   background-color: var(--button-hover-color);
+}
+
+.backdrop{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--backdrop-color);
+  opacity: 1;
+  transition: opacity var(--transition-duration) var(--transition-timing-function);
+}
+
+.backdrop.is-hidden{
+  opacity: 0;
+  pointer-events: none;
+}
+
+.backdrop.is-hidden .modal{
+  transform: translate(-50%, -50%) scale(1.1);
+
+}
+
+.modal{
+  position: absolute;
+  top: 50%;
+  left: 50%; 
+  width: 528px;
+  height: 581px;
+  background-color: var(--first-background-color);
+  transform: translate(-50%, -50%) scale(1);
+
+  transition: transform var(--transition-duration) var(--transition-timing-function);
+}
+
+.modal-btn-close{
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+
+.modal-icon{
+  width: 18px;
+  height: 18px;
+  fill: var(--additional-color);
 }
 
 /*------FEATURES------*/
